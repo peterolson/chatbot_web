@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chat</title>
+    <style>
+        #responses {
+            height: 300px;
+            overflow: auto;
+            border: 1px solid double;
+            width: 300px;
+        }
+        .human {
+            color: blue;
+        }
+        .bot {
+            color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div id="responses"></div>
+        <input id="input" /><input type="submit" id="submit" />
+    </form>
+    <script src="runBot.js"></script>
+    <script src="data.js"></script>
+    <script>
+        var txtInput = document.getElementById("input"),
+            btnSubmit = document.getElementById("submit"),
+            responses = document.getElementById("responses");
+
+        var chatterBot = getBot(bot);
+        chatterBot.hooks.alert = function (args) {
+            setTimeout(function () {
+                alert(args[0]);
+            }, 500);
+            return "Showing message...";
+        };
+        chatterBot.hooks.weather = function (args) {
+            var city = args[0];
+
+            var script = document.createElement("script");
+            script.src = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&units=metric&cnt=5&callback=weatherCallback";
+            script.type = "text/javascript";
+            document.getElementsByTagName("HEAD")[0].appendChild(script);
+
+            return "Grabbing weather in " + city + "...";
+        };
+        chatterBot.hooks.location = function () {
+            return "Qingdao";
+        };
+        var weatherCallback = function (data) {
+            var answers = document.getElementsByClassName("bot"),
+                answer = answers[answers.length - 1];
+            var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var list = data.list;
+            var html = "";
+            for (var i = 0; i < list.length; i++) {
+                var item = list[i];
+                var day = days[(new Date().getDay() + i) % 7];
+                if (i === 0) day = "Today";
+                if (i == 1) day = "Tomorrow";
+                html += "<div class='day'>" + day + ": <span class='description'>" + item.weather[0].description + "</span><div class='temp'>Low: " + item.temp.min + "°C, High: " + item.temp.max + "°C</div></div>";
+            }
+            answer.innerHTML = "Weather forecast for " + data.city.name + ", " + data.city.country + ": " + html;
+            responses.scrollTop = responses.scrollHeight;
+            console.log(data);
+        };
+
+        btnSubmit.onclick = function () {
+            responses.innerHTML += "<div class='human'>" + txtInput.value + "</div>" +
+                "<div class='bot'>" + chatterBot.replyTo(txtInput.value) + "</div>";
+            responses.scrollTop = responses.scrollHeight;
+            txtInput.value = "";
+            return false;
+        }
+    </script>
+</body>
+</html>

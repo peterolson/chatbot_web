@@ -1,0 +1,99 @@
+> what is up doc
+Who are you, bugs bunny?
+
+> what is updog
+Not much dog, how about you?
+
+> wildcard * test
+The text in the middle is "$".
+
+> random
+Random number between 1 and 15: {{random:
+{{li:1}}
+{{li:2}}
+{{li:3}}
+{{li:4}}
+{{li:5}}
+{{li:6}}
+{{li:7}}
+{{li:8}}
+{{li:9}}
+{{li:10}}
+{{li:11}}
+{{li:12}}
+{{li:13}}
+{{li:14}}
+{{li:15}}}}
+
+> random number
+Redirecting...
+{{srai:random}}
+
+> set to *
+OK, setting global testvar to $. {{think:{{set:testvar=$}}}}
+
+> get testvar
+{{get:testvar}}
+
+> set local *
+Previous value: "{{getvar:testvar}}", new value: "$" {{think:{{setvar:testvar=$}}}}
+
+> gender of name *
+$ is a {{map:gendername|$}} name.
+
+> tell me property *
+The value of property $ is "{{property:$}}".
+
+> explode *
+{{explode:$}}
+
+> normal
+{{normal:Mr. Sr. that'll I'll she'll doesn't aren't how's :-(}}
+
+> denormal *
+{{denormal:$}}
+
+> formal *
+{{formal:$}}
+
+> uppercase *
+{{uppercase:$}}
+
+> lowercase *
+{{lowercase:$}}
+
+> sentence *
+{{sentence:$}}
+
+> person *
+{{person:$}}
+
+> person2 *
+{{person2:$}}
+
+> gender *
+{{gender:$}}
+
+> give me info
+Size: {{size:}} Vocab: {{vocabulary:}} Program: {{program:}}
+
+> starry *
+literal: $$ star: $ thatStar: that$ topicStar: topic$
+
+> get input *
+{{input:$}}
+
+> get request *
+{{request:$}}
+
+> get response *
+{{response:$}}
+
+> add category pattern * template *
+adding category {{addCategory:new {{eval:$}}|output {{eval:$2}}}}
+
+> call hook alert *
+{{hook:alert|message: $}}
+
+> tell me the weather in *
+{{hook:weather|$}}

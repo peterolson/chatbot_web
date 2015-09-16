@@ -1,0 +1,50 @@
+> weather
+{{hook:weather|{{hook:location}}}}
+
+> weather *
+{{hook:weather|$}}
+
+> weather ^ in *
+{{hook:weather|$2}}
+
+> weather ^ in * {{set:relativeTime}} ^
+{{hook:weather|$2}}
+
+> weather ^ {{set:relativeTime}} ^
+{{srai:weather $ $3}}
+
+> how is the weather ^
+{{srai:weather $}}
+
+> what is the weather ^
+{{srai:weather $}}
+
+> temperature ^
+{{srai:weather $}}
+
+> how hot is it ^
+{{srai:temperature $}}
+
+> how cold is it ^
+{{srai:temperature $}}
+
+> what is the temperature ^
+{{srai:temperature $}}
+
+> is it hot ^
+{{srai:temperature $}}
+
+> is it cold ^
+{{srai:temperature $}}
+
+> precipitation ^
+{{srai:weather $}}
+
+> will it {{set:precipitation}} ^
+{{srai:precipitation $2}}
+
+> is it {{set:precipitation}} ^
+{{srai:precipitation $2}}
+
+> weather forecast ^
+{{srai:weather $}}
